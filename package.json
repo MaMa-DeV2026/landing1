@@ -1,0 +1,27 @@
+{
+  "name": "mamad-portfolio",
+  "version": "1.0.0",
+  "description": "پورتفولیوی mamad dev — طراح وب",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js",
+    "server": "node server/server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "web-design",
+    "ui-ux",
+    "persian",
+    "rtl"
+  ],
+  "author": "mamad dev",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "sql.js": "^1.14.1"
+  }
+}

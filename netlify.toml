@@ -1,0 +1,25 @@
+[build]
+  command = "echo 'Static site - no build step required'"
+  publish = "."
+
+[build.environment]
+  NODE_ENV = "production"
+
+# Netlify Forms configuration
+# The form is defined in index.html with data-netlify="true"
+# Netlify automatically detects forms during build
+
+[[headers]]
+  # Prevent caching of HTML pages
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+  # Enable CORS for API endpoints (if needed in future)
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"

@@ -1321,72 +1321,134 @@
   let isSubmitting = false;
 
   /**
-   * Submit contact form to API endpoint
+   * Submit contact form
+   * - Local dev:  POST JSON to Express API  (http://localhost:3000/api/contact)
+   * - Production: POST form-urlencoded to Netlify Forms (/)
    * @param {Object} data - { name, email, message }
    * @returns {Promise<{success: boolean, message: string}>}
    */
   async function submitContactForm(data) {
-    const endpoint = `${API_BASE}/api/contact`;
+    const isDev = API_BASE !== '';
 
     // DEBUG: Log submission attempt
     console.debug('[Contact] Submitting form:', {
+      environment: isDev ? 'development (Express API)' : 'production (Netlify Forms)',
       name: data.name.substring(0, 20) + '...',
       email: data.email,
       messageLength: data.message.length
     });
 
     try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        // Add timestamp to prevent caching
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-        body: JSON.stringify({
-          name: data.name.trim(),
-          email: data.email.trim().toLowerCase(),
-          message: data.message.trim()
-        })
-      });
+      let response;
 
-      // Parse response
-      let result;
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        result = await response.json();
+      if (isDev) {
+        // ============================================================
+        // LOCAL DEVELOPMENT: POST JSON to Express API
+        // ============================================================
+        const endpoint = `${API_BASE}/api/contact`;
+        console.debug('[Contact] Dev target:', endpoint);
+
+        response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: JSON.stringify({
+            name: data.name.trim(),
+            email: data.email.trim().toLowerCase(),
+            message: data.message.trim()
+          })
+        });
       } else {
-        result = { success: response.ok, error: response.statusText };
+        // ============================================================
+        // PRODUCTION: POST form-urlencoded to Netlify Forms
+        // ============================================================
+        const endpoint = '/';
+        console.debug('[Contact] Production target:', window.location.origin + endpoint);
+
+        const formBody = new URLSearchParams();
+        formBody.append('form-name', 'contact');
+        formBody.append('name', data.name.trim());
+        formBody.append('email', data.email.trim().toLowerCase());
+        formBody.append('message', data.message.trim());
+
+        response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: formBody.toString()
+        });
       }
 
       // DEBUG: Log response
       console.debug('[Contact] Response:', {
         status: response.status,
-        success: result.success,
-        error: result.error
+        statusText: response.statusText,
+        ok: response.ok,
+        contentType: response.headers.get('content-type')
       });
 
-      if (!response.ok) {
-        throw new Error(result.error || `HTTP ${response.status}`);
+      // Netlify Forms returns HTML or redirects on success (302/200)
+      // We treat any successful response as success
+      if (response.status >= 400) {
+        // Try to parse error message from response
+        let errorMsg = `HTTP ${response.status}`;
+        try {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorResult = await response.json();
+            errorMsg = errorResult.error || errorResult.message || errorMsg;
+          }
+        } catch (e) {
+          // Ignore parsing errors
+        }
+        console.error('[Contact] Server returned error:', { status: response.status, errorMsg });
+        throw new Error(errorMsg);
       }
 
-      return { success: true, message: result.message || (window.i18n ? window.i18n.t('contact.form.success') : 'پیام شما با موفقیت ارسال شد!') };
+      return {
+        success: true,
+        message: window.i18n ? window.i18n.t('contact.form.success') : 'پیام شما با موفقیت ارسال شد!'
+      };
 
     } catch (error) {
-      // DEBUG: Log error
+      // DEBUG: Log full error details
       console.error('[Contact] Submission failed:', {
         error: error.message,
         type: error.name,
-        endpoint
+        stack: error.stack,
+        environment: isDev ? 'development' : 'production'
       });
 
       // Handle specific error types
-      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      if (error.name === 'TypeError' && (
+        error.message.includes('fetch') ||
+        error.message.includes('NetworkError') ||
+        error.message.includes('network')
+      )) {
+        console.error('[Contact] Network-level failure - server unreachable or CORS issue');
         throw new Error(window.i18n ? window.i18n.t('contact.form.errors.networkError') : 'خطا در اتصال به سرور. لطفاً اتصال اینترنت خود را بررسی کنید.');
       }
 
-      if (error.message.includes('429')) {
+      if (error.message.includes('429') || error.message.includes('Too Many Requests')) {
+        console.warn('[Contact] Rate limited');
         throw new Error(window.i18n ? window.i18n.t('contact.form.errors.rateLimit') : 'تعداد درخواست‌های شما زیاد است. لطفاً چند دقیقه صبر کنید.');
+      }
+
+      if (error.message.includes('422')) {
+        console.error('[Contact] Validation error from server');
+        throw new Error(window.i18n ? window.i18n.t('contact.form.errors.validationError') || 'Invalid form data. Please check your inputs.' : 'اطلاعات فرم نامعتبر است. لطفاً ورودی‌های خود را بررسی کنید.');
+      }
+
+      if (error.message.includes('404')) {
+        console.error('[Contact] Endpoint not found - API route missing on server');
+      }
+
+      if (error.message.includes('500') || error.message.includes('502') || error.message.includes('503')) {
+        console.error('[Contact] Server error');
+        throw new Error(window.i18n ? window.i18n.t('contact.form.errors.serverError') || 'Server error. Please try again later.' : 'خطای سرور. لطفاً بعداً تلاش کنید.');
       }
 
       throw error;

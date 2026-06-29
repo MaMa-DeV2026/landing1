@@ -927,7 +927,13 @@
           <!-- Form status announcement for screen readers -->
           <div id="formStatus" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-          <form class="contact__form" id="contactForm" data-gsap="fade-left">
+          <form class="contact__form" id="contactForm" data-gsap="fade-left" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <div hidden aria-hidden="true">
+              <label>
+                <input name="bot-field" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
             <div class="form__field">
               <label for="contactName" class="form__label" data-i18n="contact.form.nameLabel">نام کامل</label>
               <input type="text" id="contactName" name="name" class="form__input" data-i18n-placeholder="contact.form.namePlaceholder" placeholder="نام کامل خود را وارد کنید" required autocomplete="name" aria-describedby="nameError" aria-required="true">

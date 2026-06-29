@@ -1,13 +1,38 @@
-# Netlify cache headers for optimized asset delivery
+# Netlify headers for optimized asset delivery
 
-# Cache hashed assets (JS, CSS) for 1 year
+# ============================================================
+# CACHE HEADERS
+# ============================================================
+
+# Immutable assets (hashed filenames)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  Etag
 
-# Cache CSS files
+# CSS files
 /*.css
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache JS files
+# JS files
 /*.js
   Cache-Control: public, max-age=31536000, immutable
+
+# ============================================================
+# PDF DOWNLOAD HEADERS
+# ============================================================
+
+# Resume PDF - force download
+/assets/mamad_dev-resume.pdf
+  Content-Disposition: attachment
+  Content-Type: application/pdf
+  Cache-Control: public, max-age=86400
+  X-Robots-Tag: noindex
+
+# ============================================================
+# SECURITY HEADERS
+# ============================================================
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin

@@ -989,6 +989,84 @@
     }
   }
 
+  /**
+   * Generate responsive image srcset for Unsplash URLs
+   * Supports WebP and AVIF with multiple breakpoints
+   */
+  function generateResponsiveSrcset(baseUrl, format) {
+    if (!baseUrl || !baseUrl.includes('unsplash.com')) {
+      return baseUrl;
+    }
+
+    const widths = [400, 600, 800, 1000, 1200];
+    const baseWidth = baseUrl.match(/w=\d+/)?.[0] || 'w=800';
+    const currentWidth = parseInt(baseWidth.replace('w=', '')) || 800;
+
+    const srcset = widths
+      .filter(w => w >= currentWidth * 0.5)
+      .map(w => {
+        const url = baseUrl.replace(/w=\d+/, `w=${w}`);
+        return `${url}&fm=${format} ${w}w`;
+      })
+      .join(', ');
+
+    return srcset;
+  }
+
+  /**
+   * Generate picture element with format fallbacks
+   */
+  function generatePictureElement(project) {
+    const imageUrl = project.image_url || project.image || '';
+    const title = project.title || 'Project';
+    const category = project.category || 'Project';
+
+    // If not Unsplash, return simple img
+    if (!imageUrl.includes('unsplash.com')) {
+      return `
+        <img
+          src="${imageUrl}"
+          alt="${title} - ${category}"
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="500"
+          class="project-card__image"
+          onerror="this.parentElement.classList.add('img-error'); this.classList.add('img-error')"
+        >
+        <div class="project-card__img-skeleton"></div>
+      `;
+    }
+
+    return `
+      <picture>
+        <source
+          type="image/avif"
+          srcset="${generateResponsiveSrcset(imageUrl, 'avif')}"
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+        >
+        <source
+          type="image/webp"
+          srcset="${generateResponsiveSrcset(imageUrl, 'webp')}"
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+        >
+        <img
+          src="${imageUrl.replace(/&fm=.*/, '')}"
+          srcset="${generateResponsiveSrcset(imageUrl, 'jpg')}"
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+          alt="${title} - ${category}"
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="500"
+          class="project-card__image"
+          onerror="this.parentElement.classList.add('img-error'); this.classList.add('img-error')"
+        >
+      </picture>
+      <div class="project-card__img-skeleton"></div>
+    `;
+  }
+
   function renderPortfolio() {
     const grid = document.getElementById('portfolioGrid');
     if (!grid) return;
@@ -999,8 +1077,7 @@
       <article class="project-card" data-project-id="${project.id}" data-category="${project.category || 'all'}">
         <div class="project-card__inner" data-tilt>
           <div class="project-card__img">
-            <!-- TODO: convert to WebP with Squoosh for 70% size reduction -->
-            <img src="${project.image_url || project.image || ''}" alt="${project.title} - ${project.category || 'Project'}" loading="lazy">
+            ${generatePictureElement(project)}
             <div class="project-card__overlay"></div>
           </div>
           <div class="project-card__body">
@@ -1038,10 +1115,40 @@
       </article>
     `).join('');
 
+    // Initialize image load handlers
+    initImageLoading();
+
     // GSAP stagger entrance for cards
     initPortfolioAnimations();
     // 3D tilt effect on hover
     initTiltEffect();
+  }
+
+  /**
+   * Handle image loading with skeleton fallback
+   */
+  function initImageLoading() {
+    document.querySelectorAll('.blog-card__image, .project-card__image').forEach(img => {
+      const wrapper = img.closest('.blog-card__img, .project-card__img');
+      const skeleton = wrapper?.querySelector('.blog-card__img-skeleton, .project-card__img-skeleton');
+
+      if (img.complete) {
+        img.classList.add('loaded');
+        if (skeleton) skeleton.classList.add('hidden');
+        return;
+      }
+
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+        if (skeleton) skeleton.classList.add('hidden');
+      });
+
+      img.addEventListener('error', () => {
+        wrapper?.classList.add('img-error');
+        img.classList.add('img-error');
+        if (skeleton) skeleton.classList.add('hidden');
+      });
+    });
   }
 
   function initPortfolioAnimations() {
@@ -1126,157 +1233,432 @@
   // ============================================================
 
   /**
-   * handleFormSubmit — standalone function ready to be wired to Supabase/Firebase
-   * @param {Object} formData - { name, email, message }
-   * @returns {Object} { success: boolean, message: string }
+   * ============================================================
+   * TOAST NOTIFICATION SYSTEM
+   * ============================================================
    */
-  async function handleFormSubmit(formData) {
-    // TODO: Wire to Supabase/Firebase when backend is ready
-    // Example Supabase integration:
-    // const { data, error } = await supabase.from('contact_messages').insert([formData]);
-    // if (error) throw error;
-    // return { success: true, message: 'Message saved to database!' };
 
-    // Submit via Netlify Forms
-    const form = document.getElementById('contactForm');
-    const formDataEncoded = new FormData(form);
+  /**
+   * Toast types: success, error, info, warning
+   */
+  function showToast(message, type = 'info', duration = 5000) {
+    // Remove existing toasts of same type to prevent clutter
+    const existingToasts = document.querySelectorAll(`.toast--${type}`);
+    existingToasts.forEach(t => t.remove());
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast--${type}`;
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
+
+    // Icon based on type
+    const icons = {
+      success: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+      error: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      warning: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      info: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+    };
+
+    toast.innerHTML = `
+      <span class="toast__icon">${icons[type] || icons.info}</span>
+      <span class="toast__message">${escapeHtml(message)}</span>
+      <button class="toast__close" aria-label="${window.i18n ? window.i18n.t('toast.closeAria') : 'بستن'}" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    `;
+
+    // Add to container (create if not exists)
+    let container = document.querySelector('.toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'toast-container';
+      container.setAttribute('aria-label', window.i18n ? window.i18n.t('toast.containerAria') : 'اعلان‌ها');
+      document.body.appendChild(container);
+    }
+
+    container.appendChild(toast);
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
+
+    // Close button handler
+    const closeBtn = toast.querySelector('.toast__close');
+    const closeToast = () => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    };
+
+    closeBtn.addEventListener('click', closeToast);
+
+    // Auto-dismiss
+    if (duration > 0) {
+      setTimeout(closeToast, duration);
+    }
+
+    return toast;
+  }
+
+  /**
+   * Escape HTML to prevent XSS in toast messages
+   */
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  /**
+   * ============================================================
+   * FORM SUBMISSION - API INTEGRATION
+   * ============================================================
+   */
+
+  // Track submission state to prevent duplicates
+  let isSubmitting = false;
+
+  /**
+   * Submit contact form to API endpoint
+   * @param {Object} data - { name, email, message }
+   * @returns {Promise<{success: boolean, message: string}>}
+   */
+  async function submitContactForm(data) {
+    const endpoint = `${API_BASE}/api/contact`;
+
+    // DEBUG: Log submission attempt
+    console.debug('[Contact] Submitting form:', {
+      name: data.name.substring(0, 20) + '...',
+      email: data.email,
+      messageLength: data.message.length
+    });
 
     try {
-      const response = await fetch('/', {
+      const response = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formDataEncoded).toString(),
+        headers: {
+          'Content-Type': 'application/json',
+        // Add timestamp to prevent caching
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: JSON.stringify({
+          name: data.name.trim(),
+          email: data.email.trim().toLowerCase(),
+          message: data.message.trim()
+        })
       });
 
-      if (response.ok) {
-        return { success: true, message: 'Message sent successfully!' };
+      // Parse response
+      let result;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
       } else {
-        throw new Error('Network response was not ok');
+        result = { success: response.ok, error: response.statusText };
       }
+
+      // DEBUG: Log response
+      console.debug('[Contact] Response:', {
+        status: response.status,
+        success: result.success,
+        error: result.error
+      });
+
+      if (!response.ok) {
+        throw new Error(result.error || `HTTP ${response.status}`);
+      }
+
+      return { success: true, message: result.message || (window.i18n ? window.i18n.t('contact.form.success') : 'پیام شما با موفقیت ارسال شد!') };
+
     } catch (error) {
-      console.error('Form submission error:', error);
+      // DEBUG: Log error
+      console.error('[Contact] Submission failed:', {
+        error: error.message,
+        type: error.name,
+        endpoint
+      });
+
+      // Handle specific error types
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        throw new Error(window.i18n ? window.i18n.t('contact.form.errors.networkError') : 'خطا در اتصال به سرور. لطفاً اتصال اینترنت خود را بررسی کنید.');
+      }
+
+      if (error.message.includes('429')) {
+        throw new Error(window.i18n ? window.i18n.t('contact.form.errors.rateLimit') : 'تعداد درخواست‌های شما زیاد است. لطفاً چند دقیقه صبر کنید.');
+      }
+
       throw error;
     }
   }
 
+  /**
+   * ============================================================
+   * CONTACT FORM INITIALIZATION
+   * ============================================================
+   */
+
   function initContactForm() {
     const form = document.getElementById('contactForm');
-    if (!form) return;
+    if (!form) {
+      console.warn('[Contact] Form not found');
+      return;
+    }
 
     const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn?.querySelector('.btn__text');
 
+    // Field configurations with validation
     const fields = {
       contactName: {
+        element: document.getElementById('contactName'),
         errorEl: document.getElementById('nameError'),
-        validate(val) {
-          if (!val.trim()) return 'نام الزامی است.';
-          if (val.trim().length < 2) return 'لطفاً نام معتبر وارد کنید.';
+        validate(value) {
+          const tr = (k) => window.i18n ? window.i18n.t(k) : '';
+          if (!value || !value.trim()) return tr('contact.form.errors.nameRequired') || 'لطفاً نام خود را وارد کنید.';
+          if (value.trim().length < 2) return tr('contact.form.errors.nameMin') || 'نام باید حداقل ۲ کاراکتر باشد.';
+          if (value.trim().length > 100) return tr('contact.form.errors.nameMax') || 'نام نباید بیش از ۱۰۰ کاراکتر باشد.';
+          if (/[<>{}]/.test(value)) return tr('contact.form.errors.nameInvalid') || 'کاراکترهای غیرمجاز وارد شده است.';
           return '';
-        },
+        }
       },
       contactEmail: {
+        element: document.getElementById('contactEmail'),
         errorEl: document.getElementById('emailError'),
-        validate(val) {
-          if (!val.trim()) return 'ایمیل الزامی است.';
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return 'لطفاً ایمیل معتبر وارد کنید.';
+        validate(value) {
+          const tr = (k) => window.i18n ? window.i18n.t(k) : '';
+          if (!value || !value.trim()) return tr('contact.form.errors.emailRequired') || 'لطفاً ایمیل خود را وارد کنید.';
+          const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+          if (!emailRegex.test(value.trim())) return tr('contact.form.errors.emailInvalid') || 'لطفاً یک ایمیل معتبر وارد کنید.';
+          if (value.length > 254) return tr('contact.form.errors.emailMax') || 'ایمیل نامعتبر است.';
           return '';
-        },
+        }
       },
       contactMessage: {
+        element: document.getElementById('contactMessage'),
         errorEl: document.getElementById('messageError'),
-        validate(val) {
-          if (!val.trim()) return 'پیام نمی‌تواند خالی باشد.';
-          if (val.trim().length < 10) return 'پیام باید حداقل ۱۰ کاراکتر باشد.';
+        validate(value) {
+          const tr = (k) => window.i18n ? window.i18n.t(k) : '';
+          if (!value || !value.trim()) return tr('contact.form.errors.messageRequired') || 'لطفاً پیام خود را بنویسید.';
+          if (value.trim().length < 10) return tr('contact.form.errors.messageMin') || 'پیام باید حداقل ۱۰ کاراکتر باشد.';
+          if (value.trim().length > 2000) return tr('contact.form.errors.messageMax') || 'پیام نباید بیش از ۲۰۰۰ کاراکتر باشد.';
+          if (/<script|javascript:|on\w+=/i.test(value)) return tr('contact.form.errors.messageInvalid') || 'محتوای غیرمجاز شناسایی شد.';
           return '';
-        },
-      },
+        }
+      }
     };
 
-    // Validate on blur
-    Object.entries(fields).forEach(([id, field]) => {
-      const input = document.getElementById(id);
-      if (!input) return;
+    /**
+     * Show field error with visual feedback
+     */
+    function showFieldError(fieldConfig, message) {
+      if (!fieldConfig || !fieldConfig.element) return;
 
-      input.addEventListener('blur', () => {
-        const msg = field.validate(input.value);
-        showFieldError(input, field.errorEl, msg);
+      const { element, errorEl } = fieldConfig;
+
+      // Update error message
+      if (errorEl) {
+        errorEl.textContent = message;
+      }
+
+      // Update input styling
+      element.classList.toggle('invalid', !!message);
+      element.classList.toggle('valid', !message && element.value.trim());
+
+      // DEBUG: Log validation
+      if (message) {
+        console.debug('[Validation] Error:', {
+          field: element.id,
+          message: message.substring(0, 30)
+        });
+      }
+    }
+
+    /**
+     * Clear all field errors and reset touched state
+     */
+    function clearFieldErrors() {
+      Object.values(fields).forEach(field => {
+        if (field.errorEl) field.errorEl.textContent = '';
+        if (field.element) {
+          field.element.classList.remove('invalid', 'valid', 'touched');
+        }
+      });
+    }
+
+    /**
+     * Validate all fields
+     * @returns {boolean} - true if all fields are valid
+     */
+    function validateAllFields() {
+      let isValid = true;
+
+      Object.entries(fields).forEach(([id, field]) => {
+        const error = field.validate(field.element?.value || '');
+        showFieldError(field, error);
+        if (error) isValid = false;
       });
 
-      // Clear error on input (only if previously invalid)
-      input.addEventListener('input', () => {
-        if (input.classList.contains('invalid')) {
-          const msg = field.validate(input.value);
-          showFieldError(input, field.errorEl, msg);
+      return isValid;
+    }
+
+    /**
+     * Validate single field on blur
+     */
+    Object.entries(fields).forEach(([id, field]) => {
+      if (!field.element) return;
+
+      // Validate on blur
+      field.element.addEventListener('blur', () => {
+        // Only validate on blur if field has been touched
+        if (field.element.classList.contains('touched')) {
+          const error = field.validate(field.element.value);
+          showFieldError(field, error);
         }
+      });
+
+      // Mark as touched on first input
+      field.element.addEventListener('input', () => {
+        if (!field.element.classList.contains('touched')) {
+          field.element.classList.add('touched');
+        }
+
+        // Real-time validation feedback (only if already has error)
+        if (field.element.classList.contains('invalid')) {
+          const error = field.validate(field.element.value);
+          showFieldError(field, error);
+        }
+      });
+
+      // Clear invalid state on focus
+      field.element.addEventListener('focus', () => {
+        field.element.classList.remove('invalid');
+        if (field.errorEl) field.errorEl.textContent = '';
       });
     });
 
+    /**
+     * Update button state
+     */
+    function setButtonState(state) {
+      if (!submitBtn || !btnText) return;
+      const tr = (k, d) => window.i18n ? (window.i18n.t(k) || d) : d;
+
+      const states = {
+        idle: {
+          text: tr('contact.form.submit', 'درخواست مشاوره رایگان'),
+          disabled: false,
+          class: ''
+        },
+        loading: {
+          text: tr('contact.form.submitting', 'در حال ارسال...'),
+          disabled: true,
+          class: 'loading'
+        },
+        success: {
+          text: tr('contact.form.success', '✓ پیام ارسال شد!'),
+          disabled: true,
+          class: 'success'
+        },
+        error: {
+          text: tr('contact.form.errorRetry', 'خطا - تلاش مجدد'),
+          disabled: false,
+          class: 'error'
+        }
+      };
+
+      const config = states[state] || states.idle;
+
+      btnText.textContent = config.text;
+      submitBtn.disabled = config.disabled;
+      submitBtn.classList.remove('loading', 'success', 'error');
+      if (config.class) submitBtn.classList.add(config.class);
+    }
+
+    /**
+     * Handle form submission
+     */
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      let hasError = false;
-      Object.entries(fields).forEach(([id, field]) => {
-        const input = document.getElementById(id);
-        const msg = field.validate(input.value);
-        showFieldError(input, field.errorEl, msg);
-        if (msg) hasError = true;
-      });
-
-      if (hasError) return;
-
-      // Submit using standalone function
-      const btnText = submitBtn.querySelector('.btn__text');
-      const originalText = btnText.textContent;
-      btnText.textContent = 'در حال ارسال...';
-      submitBtn.disabled = true;
-
-      const formData = {
-        name: document.getElementById('contactName').value.trim(),
-        email: document.getElementById('contactEmail').value.trim(),
-        message: document.getElementById('contactMessage').value.trim(),
-      };
-
-      try {
-        const result = await handleFormSubmit(formData);
-        if (result.success) {
-          btnText.textContent = '✓ پیام ارسال شد!';
-          form.reset();
-          Object.entries(fields).forEach(([id, field]) => {
-            const input = document.getElementById(id);
-            input.classList.remove('valid', 'invalid');
-            if (field.errorEl) field.errorEl.textContent = '';
-          });
-        }
-      } catch (error) {
-        btnText.textContent = 'خطا';
-        showFieldError(
-          document.getElementById('messageError'),
-          'خطا در ارسال پیام. لطفاً دوباره تلاش کنید.'
-        );
+      // Prevent duplicate submissions
+      if (isSubmitting) {
+        console.debug('[Contact] Duplicate submission prevented');
+        return;
       }
 
-      setTimeout(() => {
-        btnText.textContent = originalText;
-        submitBtn.disabled = false;
-      }, 3000);
-    });
-  }
+      // Validate all fields
+      if (!validateAllFields()) {
+        showToast(window.i18n ? window.i18n.t('contact.form.errors.validationSummary') : 'لطفاً خطاهای فرم را برطرف کنید.', 'warning');
+        // Focus first invalid field
+        const firstInvalid = form.querySelector('.invalid');
+        firstInvalid?.focus();
+        return;
+      }
 
-  /**
-   * showFieldError — update error message and input class.
-   */
-  function showFieldError(input, errorEl, msg) {
-    if (typeof errorEl === 'string') {
-      // Handle case where errorEl is the element directly
-      const el = document.getElementById('messageError');
-      if (el) el.textContent = errorEl;
-    } else if (errorEl) {
-      errorEl.textContent = msg;
-    }
-    if (input) {
-      input.classList.toggle('invalid', !!msg);
-      input.classList.toggle('valid', !msg && input.value.trim() !== '');
-    }
+      // Collect form data
+      const formData = {
+        name: fields.contactName.element?.value.trim() || '',
+        email: fields.contactEmail.element?.value.trim() || '',
+        message: fields.contactMessage.element?.value.trim() || ''
+      };
+
+      // Set loading state
+      isSubmitting = true;
+      setButtonState('loading');
+      clearFieldErrors();
+
+      // DEBUG: Log submission start
+      console.debug('[Contact] Form submission started');
+
+      try {
+        const result = await submitContactForm(formData);
+
+        // Success!
+        setButtonState('success');
+        showToast(result.message || (window.i18n ? window.i18n.t('contact.form.success') : 'پیام شما با موفقیت ارسال شد!'), 'success');
+
+        // Reset form
+        form.reset();
+        clearFieldErrors();
+        Object.keys(fields).forEach(id => {
+          if (fields[id].element) {
+            fields[id].element.classList.remove('touched', 'valid', 'invalid');
+          }
+        });
+
+        // Reset button after delay
+        setTimeout(() => {
+          setButtonState('idle');
+        }, 3000);
+
+        // DEBUG: Log success
+        console.debug('[Contact] Form submitted successfully');
+
+      } catch (error) {
+        // Handle error
+        setButtonState('error');
+        showToast(error.message || (window.i18n ? window.i18n.t('contact.form.errors.submitError') : 'خطا در ارسال پیام. لطفاً دوباره تلاش کنید.'), 'error');
+
+        // Reset button after delay
+        setTimeout(() => {
+          setButtonState('idle');
+        }, 3000);
+
+        // DEBUG: Log error (already logged in submitContactForm)
+      } finally {
+        // Re-enable submission
+        isSubmitting = false;
+      }
+    });
+
+    // DEBUG: Log initialization
+    console.debug('[Contact] Form initialized', {
+      formExists: !!form,
+      submitBtnExists: !!submitBtn,
+      apiEndpoint: `${API_BASE}/api/contact`
+    });
   }
 
   // ============================================================
@@ -1316,6 +1698,9 @@
     // Render content
     renderSkills();
     renderPortfolio();
+
+    // Initialize image loading handlers (skeleton + error states)
+    initImageLoading();
 
     // Initialize UI components
     initLoader();

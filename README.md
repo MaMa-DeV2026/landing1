@@ -243,12 +243,15 @@ stire/
 http://localhost:3000/admin
 ```
 
-### اطلاعات ورود پیش‌فرض
+### اطلاعات ورود
 
 ```
-نام کاربری: admin
-رمز عبور:    admin123
+# در فایل .env تنظیم کنید:
+ADMIN_USERNAME=your_username
+ADMIN_PASSWORD=your_secure_password
 ```
+
+> ⚠️ **امنیت:** اطلاعات ورود پیش‌فرض وجود ندارد. حتماً `.env.example` را کپی کرده و مقادیر امن وارد کنید.
 
 ### امکانات پنل
 
@@ -346,11 +349,43 @@ http://localhost:3000/admin
 npm run dev
 ```
 
-### متغیرهای محیطی (اختیاری)
+### متغیرهای محیطی
 
+```bash
+# ۱. کپی فایل نمونه
+cp .env.example .env
+
+# ۲. ویرایش مقادیر
+nano .env
+```
+
+**متغیرهای ضروری (Production):**
 ```env
-PORT=3000              # پورت سرور (پیش‌فرض: 3000)
-JWT_SECRET=your-secret # کلید JWT (پیش‌فرض: mamad-dev-secret-key-2024)
+JWT_SECRET=your-super-secure-jwt-secret-at-least-32-characters-long
+ADMIN_USERNAME=your_admin_username
+ADMIN_PASSWORD=your_secure_password
+CORS_ORIGINS=https://your-domain.com
+```
+
+**متغیرهای اختیاری:**
+```env
+NODE_ENV=development
+PORT=3000
+RATE_LIMIT_ADMIN_MAX=5
+RATE_LIMIT_CONTACT_MAX=3
+```
+
+### تولید رمز عبور امن
+
+```bash
+# نصب وابستگی‌ها (بار اول)
+npm install
+
+# تولید هش رمز عبور
+node server/scripts/generate-password.js "YourSecurePassword123!"
+
+# نمایش به صورت JSON
+node server/scripts/generate-password.js "pass" --json
 ```
 
 ---
@@ -604,6 +639,3 @@ Pass:    admin123
 ## License
 
 ISC
-#   l a n d i n g  
- #   l a n d i n g 1  
- 

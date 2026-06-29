@@ -1,0 +1,184 @@
+<!-- ======================== TESTIMONIALS (NEW) ======================== -->
+<!-- Replace lines 267-313 in index.html with this section -->
+<!-- ======================== TESTIMONIALS ======================== -->
+<section id="testimonials" class="testimonials section" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="testimonials__header" data-gsap="fade-up">
+      <span class="section__label">رضایت مشتریان</span>
+      <h2 id="testimonials-heading" class="section__heading">نظرات <span class="text-accent">تأیید شده</span></h2>
+      <p class="testimonials__subtitle">پروژه‌های واقعی، مشتریان واقعی، نتایج واقعی</p>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="testimonials__trust-badges" data-gsap="fade-up">
+      <div class="trust-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+        <span>تأیید شده</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge__stars" aria-label="۵ از ۵ ستاره">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span>۱۰۰٪ رضایت</span>
+      </div>
+      <div class="trust-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>۸ پروژه موفق</span>
+      </div>
+    </div>
+
+    <div class="testimonials__grid">
+      <!-- Testimonial 1 -->
+      <article class="testimonial-card" data-gsap="fade-up">
+        <div class="testimonial-card__header">
+          <div class="testimonial-card__rating" aria-label="۵ از ۵ ستاره">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="testimonial-card__verified">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            تأیید شده
+          </span>
+        </div>
+        <blockquote class="testimonial-card__text">
+          <p>"تحویل و کیفیت کار mamad_dev فراتر از انتظارات ما بود. وب‌سایت به موقع تحویل داده شد و فوق‌العاده زیبا بود. فروشگاه آنلاین ما در سه ماه اول ۴۰٪ رشد کرد."</p>
+        </blockquote>
+        <div class="testimonial-card__project">
+          <span class="testimonial-card__project-label">پروژه:</span>
+          <span class="testimonial-card__project-name">فروشگاه آنلاین Bloom</span>
+        </div>
+        <footer class="testimonial-card__author">
+          <div class="testimonial-card__avatar">
+            <img src="https://picsum.photos/seed/ali/80/80" alt="علی محمدی" width="48" height="48" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22 fill=%22%23e8590c%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2224%22/%3E%3Ctext x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22 font-family=%22system-ui%22%3Eع%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="testimonial-card__author-info">
+            <cite class="testimonial-card__author-name">علی محمدی</cite>
+            <span class="testimonial-card__author-role">مدیر برند، آرایشی بهداشتی نور</span>
+            <span class="testimonial-card__author-company">نور کازمتیک</span>
+          </div>
+        </footer>
+        <time class="testimonial-card__date" datetime="2024-02">فوریه ۲۰۲۴</time>
+      </article>
+
+      <!-- Testimonial 2 (Featured) -->
+      <article class="testimonial-card testimonial-card--featured" data-gsap="fade-up">
+        <div class="testimonial-card__header">
+          <div class="testimonial-card__rating" aria-label="۵ از ۵ ستاره">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="testimonial-card__verified">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            تأیید شده
+          </span>
+        </div>
+        <blockquote class="testimonial-card__text">
+          <p>"حرفه‌ای، پاسخگو و فوق‌العاده بااستعداد. فروشگاه آنلاینی که ساختند فروش ماهانه ما را به طور چشمگیری افزایش داد. پشتیبانی بعد از تحویل هم عالی بود."</p>
+        </blockquote>
+        <div class="testimonial-card__metrics">
+          <div class="testimonial-card__metric">
+            <span class="testimonial-card__metric-value">+۶۰٪</span>
+            <span class="testimonial-card__metric-label">افزایش فروش</span>
+          </div>
+          <div class="testimonial-card__metric">
+            <span class="testimonial-card__metric-value">۳ هفته</span>
+            <span class="testimonial-card__metric-label">زمان تحویل</span>
+          </div>
+        </div>
+        <div class="testimonial-card__project">
+          <span class="testimonial-card__project-label">پروژه:</span>
+          <span class="testimonial-card__project-name">پلتفرم فروش Dorna Shop</span>
+        </div>
+        <footer class="testimonial-card__author">
+          <div class="testimonial-card__avatar">
+            <img src="https://picsum.photos/seed/sara/80/80" alt="سارا احمدی" width="48" height="48" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22 fill=%22%23e8590c%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2224%22/%3E%3Ctext x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22 font-family=%22system-ui%22%3Eس%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="testimonial-card__author-info">
+            <cite class="testimonial-card__author-name">سارا احمدی</cite>
+            <span class="testimonial-card__author-role">بنیان‌گذار و مدیرعامل</span>
+            <span class="testimonial-card__author-company">درنا شاپ</span>
+          </div>
+        </footer>
+        <time class="testimonial-card__date" datetime="2024-01">ژانویه ۲۰۲۴</time>
+      </article>
+
+      <!-- Testimonial 3 -->
+      <article class="testimonial-card" data-gsap="fade-up">
+        <div class="testimonial-card__header">
+          <div class="testimonial-card__rating" aria-label="۵ از ۵ ستاره">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="testimonial-card__verified">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            تأیید شده
+          </span>
+        </div>
+        <blockquote class="testimonial-card__text">
+          <p>"کار فوق‌العاده! توجه به جزئیات و تعهد به کیفیت قابل تحسین است. پنل مدیریتی که ساختند کار ما را ۵۰٪ سریع‌تر کرد. برای هر پروژه وبی توصیه می‌کنم."</p>
+        </blockquote>
+        <div class="testimonial-card__project">
+          <span class="testimonial-card__project-label">پروژه:</span>
+          <span class="testimonial-card__project-name">داشبورد مدیریت Lumina</span>
+        </div>
+        <footer class="testimonial-card__author">
+          <div class="testimonial-card__avatar">
+            <img src="https://picsum.photos/seed/reza/80/80" alt="رضا کریمی" width="48" height="48" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22 fill=%22%23e8590c%22%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%2224%22/%3E%3Ctext x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22 font-family=%22system-ui%22%3Eر%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="testimonial-card__author-info">
+            <cite class="testimonial-card__author-name">رضا کریمی</cite>
+            <span class="testimonial-card__author-role">مدیر فنی</span>
+            <span class="testimonial-card__author-company">استارتاپ نوآوران</span>
+          </div>
+        </footer>
+        <time class="testimonial-card__date" datetime="2024-03">مارس ۲۰۲۴</time>
+      </article>
+    </div>
+
+    <!-- Social proof stats -->
+    <div class="testimonials__stats" data-gsap="fade-up">
+      <div class="testimonials__stat">
+        <span class="testimonials__stat-number">۸</span>
+        <span class="testimonials__stat-label">پروژه موفق</span>
+      </div>
+      <div class="testimonials__stat">
+        <span class="testimonials__stat-number">۱۰۰٪</span>
+        <span class="testimonials__stat-label">نرخ رضایت</span>
+      </div>
+      <div class="testimonials__stat">
+        <span class="testimonials__stat-number">۴+</span>
+        <span class="testimonials__stat-label">سال تجربه</span>
+      </div>
+    </div>
+  </div>
+</section>

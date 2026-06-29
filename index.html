@@ -13,20 +13,235 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/i18n.css">
 
   <!-- Favicon: geometric shape matching the Three.js hero -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,2 28,10 28,22 16,30 4,22 4,10' fill='%23e8590c'/%3E%3C/svg%3E" type="image/svg+xml">
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Schema.org JSON-LD — Unified @graph -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "mamad_dev",
-    "description": "Professional web design and development. Professional Quality, Fair Price.",
-    "url": "https://mamadweb.netlify.app",
-    "areaServed": "Worldwide",
-    "serviceType": "Web Design and Development"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://mamadweb.netlify.app/#person",
+        "name": "mamad_dev",
+        "givenName": "mamad",
+        "additionalName": "dev",
+        "description": "Web designer and developer passionate about creating beautiful and functional experiences.",
+        "url": "https://mamadweb.netlify.app",
+        "image": "https://mamadweb.netlify.app/assets/og-image.jpg",
+        "email": "mamad@mamadweb.netlify.app",
+        "telephone": "+98-XXX-XXX-XXXX",
+        "jobTitle": "Web Designer & Developer",
+        "knowsAbout": ["Web Design", "UI/UX Design", "Frontend Development", "Full-Stack Development", "Responsive Design", "JavaScript", "React", "Node.js"],
+        "knowsLanguage": [
+          { "@type": "Language", "name": "Persian", "alternateName": "fa" },
+          { "@type": "Language", "name": "English", "alternateName": "en" }
+        ],
+        "homeLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Yazd", "addressCountry": "IR" } },
+        "sameAs": [
+          "https://github.com/mamaddev",
+          "https://linkedin.com/in/mamaddev",
+          "https://twitter.com/mamaddev",
+          "https://instagram.com/mamaddev"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://mamadweb.netlify.app/#organization",
+        "name": "mamad_dev",
+        "url": "https://mamadweb.netlify.app",
+        "description": "Professional web design and development. Professional Quality, Fair Price.",
+        "logo": { "@type": "ImageObject", "url": "https://mamadweb.netlify.app/assets/og-image.jpg" },
+        "founder": { "@id": "https://mamadweb.netlify.app/#person" },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "mamad@mamadweb.netlify.app",
+          "availableLanguage": ["Persian", "English"]
+        },
+        "sameAs": [
+          "https://github.com/mamaddev",
+          "https://linkedin.com/in/mamaddev",
+          "https://twitter.com/mamaddev",
+          "https://instagram.com/mamaddev"
+        ],
+        "address": { "@type": "PostalAddress", "addressLocality": "Yazd", "addressCountry": "IR" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mamadweb.netlify.app/#website",
+        "name": "mamad_dev — Professional Web Design",
+        "url": "https://mamadweb.netlify.app",
+        "description": "Professional web design and development with excellent quality and fair price.",
+        "inLanguage": ["fa", "en"],
+        "publisher": { "@id": "https://mamadweb.netlify.app/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mamadweb.netlify.app/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://mamadweb.netlify.app/#service",
+        "name": "Web Design & Development Services",
+        "description": "From responsive websites to full-stack applications, delivering solutions that combine aesthetics with clean, maintainable code.",
+        "provider": { "@id": "https://mamadweb.netlify.app/#organization" },
+        "areaServed": "Worldwide",
+        "serviceType": "Web Design and Development",
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": { "@type": "PriceSpecification", "description": "Project-based pricing after discovery session" }
+        }
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://mamadweb.netlify.app/#project-1",
+        "name": "لومینا — پنل مدیریت SaaS",
+        "description": "طراحی رابط کاربری برای یک پنل تحلیل داده با قابلیت نمایش اطلاعات لحظه‌ای و پشتیبانی از حالت تاریک.",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "datePublished": "2025",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&h=750&fit=crop",
+        "keywords": ["Figma", "UI/UX", "CSS"]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://mamadweb.netlify.app/#project-2",
+        "name": "بلوم — فروشگاه آنلاین گل",
+        "description": "طراحی تجربه کاربری کامل برای یک فروشگاه اینترنتی با رویکرد موبایل‌فرست و انیمیشن‌های روان.",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "datePublished": "2025",
+        "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
+        "keywords": ["HTML", "CSS", "JavaScript"]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://mamadweb.netlify.app/#project-3",
+        "name": "فورج — وب‌سایت آژانس دیجیتال",
+        "description": "طراحی لندینگ پیج برای یک آژانس دیجیتال با تمرکز بر تجربه اسکرول و هویت بصری قوی.",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "datePublished": "2025",
+        "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1000&h=750&fit=crop",
+        "keywords": ["Figma", "GSAP", "CSS"]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://mamadweb.netlify.app/#project-4",
+        "name": "زنو — وبلاگ شخصی",
+        "description": "طراحی وبلاگ با رویکرد محتوامحور، خوانایی بالا و سرعت بارگذاری بهینه.",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "datePublished": "2025",
+        "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&h=750&fit=crop",
+        "keywords": ["UI Design", "Typography", "CSS"]
+      },
+      {
+        "@type": "Review",
+        "@id": "https://mamadweb.netlify.app/#review-1",
+        "author": { "@type": "Person", "name": "علی" },
+        "reviewBody": "تحویل و کیفیت کار mamad_dev فراتر از انتظارات ما بود. وب‌سایت به موقع تحویل داده شد و فوق‌العاده زیبا بود.",
+        "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5 },
+        "itemReviewed": { "@id": "https://mamadweb.netlify.app/#service" },
+        "publisher": { "@id": "https://mamadweb.netlify.app/#person" }
+      },
+      {
+        "@type": "Review",
+        "@id": "https://mamadweb.netlify.app/#review-2",
+        "author": { "@type": "Person", "name": "سارا" },
+        "reviewBody": "حرفه‌ای، پاسخگو و فوق‌العاده بااستعداد. فروشگاه آنلاینی که ساختند فروش ما را به طور چشمگیری افزایش داد.",
+        "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5 },
+        "itemReviewed": { "@id": "https://mamadweb.netlify.app/#service" },
+        "publisher": { "@id": "https://mamadweb.netlify.app/#person" }
+      },
+      {
+        "@type": "Review",
+        "@id": "https://mamadweb.netlify.app/#review-3",
+        "author": { "@type": "Person", "name": "رضا" },
+        "reviewBody": "کار فوق‌العاده! توجه به جزئیات و تعهد به کیفیت قابل تحسین است.",
+        "reviewRating": { "@type": "Rating", "ratingValue": 5, "bestRating": 5 },
+        "itemReviewed": { "@id": "https://mamadweb.netlify.app/#service" },
+        "publisher": { "@id": "https://mamadweb.netlify.app/#person" }
+      },
+      {
+        "@type": "AggregateRating",
+        "@id": "https://mamadweb.netlify.app/#aggregate-rating",
+        "itemReviewed": { "@id": "https://mamadweb.netlify.app/#organization" },
+        "ratingValue": "5",
+        "bestRating": "5",
+        "ratingCount": "3",
+        "reviewCount": "3"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mamadweb.netlify.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does design cost?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Project cost depends on complexity. After the discovery session, I provide a detailed estimate." }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Typical projects take 2 to 6 weeks depending on scope." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should you trust me?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Over 4 years of experience, 8 successful projects, and a money-back guarantee." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the code SEO-optimized?",
+            "acceptedAnswer": { "@type": "Answer", "text": "I write clean, semantic, and well-documented code." }
+          }
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://mamadweb.netlify.app/#blog-1",
+        "headline": "Web Design Trends in 2025",
+        "description": "Discover the latest trends shaping modern web design.",
+        "datePublished": "2024-02-01",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "publisher": { "@id": "https://mamadweb.netlify.app/#organization" },
+        "url": "https://mamadweb.netlify.app/blog/web-design-trends-2025"
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://mamadweb.netlify.app/#blog-2",
+        "headline": "Best SEO Practices in 2025",
+        "description": "Learn how to optimize your website for search engines.",
+        "datePublished": "2024-03-01",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "publisher": { "@id": "https://mamadweb.netlify.app/#organization" },
+        "url": "https://mamadweb.netlify.app/blog/best-seo-practices-2025"
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://mamadweb.netlify.app/#blog-3",
+        "headline": "The Art of Responsive Design",
+        "description": "Techniques for creating mobile-first websites.",
+        "datePublished": "2024-04-01",
+        "author": { "@id": "https://mamadweb.netlify.app/#person" },
+        "publisher": { "@id": "https://mamadweb.netlify.app/#organization" },
+        "url": "https://mamadweb.netlify.app/blog/art-of-responsive-design"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://mamadweb.netlify.app/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mamadweb.netlify.app/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://mamadweb.netlify.app/#about" },
+          { "@type": "ListItem", "position": 3, "name": "Skills", "item": "https://mamadweb.netlify.app/#skills" },
+          { "@type": "ListItem", "position": 4, "name": "Portfolio", "item": "https://mamadweb.netlify.app/#portfolio" },
+          { "@type": "ListItem", "position": 5, "name": "Blog", "item": "https://mamadweb.netlify.app/#blog" },
+          { "@type": "ListItem", "position": 6, "name": "Contact", "item": "https://mamadweb.netlify.app/#contact" }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -49,7 +264,7 @@
   -->
 
   <!-- Skip to main content link -->
-  <a href="#main-content" class="skip-link">رفتن به محتوای اصلی</a>
+  <a href="#main-content" class="skip-link" data-i18n="skipLink">رفتن به محتوای اصلی</a>
 
 </head>
 <body>
@@ -90,9 +305,9 @@
             <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/>
           </svg>
         </span>
-        <span>mamad_dev</span>
+          <span data-i18n="nav.brand">mamad_dev</span>
       </a>
-      <button class="nav__hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navOverlay">
+      <button class="nav__hamburger" id="navHamburger" data-i18n="nav.ariaOpenMenu" data-i18n-attr="aria-label" aria-expanded="false" aria-controls="navOverlay">
         <span class="nav__hamburger-line"></span>
         <span class="nav__hamburger-line"></span>
         <span class="nav__hamburger-line"></span>
@@ -101,22 +316,22 @@
   </header>
 
   <!-- Full-page overlay menu — GSAP stagger animated links -->
-  <div class="nav__overlay" id="navOverlay" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+  <div class="nav__overlay" id="navOverlay" aria-hidden="true" role="dialog" data-i18n="nav.ariaMenuLabel" data-i18n-attr="aria-label">
     <nav class="nav__menu" id="navMenu">
       <ul class="nav__links">
-        <li class="nav__link-item"><a href="#hero" class="nav__link" data-index="0"><span class="nav__link-num">۰۱</span>خانه</a></li>
-        <li class="nav__link-item"><a href="#about" class="nav__link" data-index="1"><span class="nav__link-num">۰۲</span>درباره من</a></li>
-        <li class="nav__link-item"><a href="#skills" class="nav__link" data-index="2"><span class="nav__link-num">۰۳</span>مهارت‌ها</a></li>
-        <li class="nav__link-item"><a href="#portfolio" class="nav__link" data-index="3"><span class="nav__link-num">۰۴</span>نمونه کارها</a></li>
-        <li class="nav__link-item"><a href="#contact" class="nav__link" data-index="4"><span class="nav__link-num">۰۵</span>تماس</a></li>
+        <li class="nav__link-item"><a href="#hero" class="nav__link" data-index="0"><span class="nav__link-num">۰۱</span><span data-i18n="nav.home">خانه</span></a></li>
+        <li class="nav__link-item"><a href="#about" class="nav__link" data-index="1"><span class="nav__link-num">۰۲</span><span data-i18n="nav.about">درباره من</span></a></li>
+        <li class="nav__link-item"><a href="#skills" class="nav__link" data-index="2"><span class="nav__link-num">۰۳</span><span data-i18n="nav.skills">مهارت‌ها</span></a></li>
+        <li class="nav__link-item"><a href="#portfolio" class="nav__link" data-index="3"><span class="nav__link-num">۰۴</span><span data-i18n="nav.portfolio">نمونه کارها</span></a></li>
+        <li class="nav__link-item"><a href="#contact" class="nav__link" data-index="4"><span class="nav__link-num">۰۵</span><span data-i18n="nav.contact">تماس</span></a></li>
       </ul>
       <div class="nav__menu-footer">
-        <a href="mailto:info@mamad_dev.com" class="nav__menu-email" dir="ltr">info@mamad_dev.com</a>
+        <a href="mailto:info@mamad_dev.com" class="nav__menu-email" dir="ltr" data-i18n="nav.menuEmail">info@mamad_dev.com</a>
         <div class="nav__menu-socials">
-          <a href="https://github.com/mamad_dev" target="_blank" rel="noopener noreferrer" aria-label="گیت‌هاب" class="nav__social">گیت‌هاب</a>
-          <a href="#" aria-label="لینکدین" class="nav__social">لینکدین</a>
-          <a href="#" aria-label="توییتر" class="nav__social">توییتر</a>
-          <a href="#" aria-label="اینستاگرام" class="nav__social">اینستاگرام</a>
+          <a href="https://github.com/mamad_dev" target="_blank" rel="noopener noreferrer" data-i18n="nav.socialGithub" data-i18n-attr="aria-label" class="nav__social" aria-label="گیت‌هاب">گیت‌هاب</a>
+          <a href="#" data-i18n="nav.socialLinkedin" data-i18n-attr="aria-label" class="nav__social" aria-label="لینکدین">لینکدین</a>
+          <a href="#" data-i18n="nav.socialTwitter" data-i18n-attr="aria-label" class="nav__social" aria-label="توییتر">توییتر</a>
+          <a href="#" data-i18n="nav.socialInstagram" data-i18n-attr="aria-label" class="nav__social" aria-label="اینستاگرام">اینستاگرام</a>
         </div>
       </div>
     </nav>
@@ -134,24 +349,24 @@
         <div class="hero__text-col">
           <div class="hero__tag" id="heroTag">
             <span class="hero__tag-dot" aria-hidden="true"></span>
-            <span>طراحی حرفه‌ای وب</span>
+            <span data-i18n="hero.tag">طراحی حرفه‌ای وب</span>
           </div>
           <h1 class="hero__title" id="heroTitle">
-            <span class="hero__title-line">کیفیت حرفه‌ای،</span>
-            <span class="hero__title-line"><span class="hero__title-accent">قیمت منصفانه</span></span>
+            <span class="hero__title-line" data-i18n="hero.title1">کیفیت حرفه‌ای،</span>
+            <span class="hero__title-line"><span class="hero__title-accent" data-i18n="hero.title2">قیمت منصفانه</span></span>
           </h1>
-          <p class="hero__subtitle" id="heroSubtitle">
+          <p class="hero__subtitle" id="heroSubtitle" data-i18n="hero.subtitle">
             طراحی و توسعه وب حرفه‌ای — از ایده تا اجرا. کد با کیفیت، طراحی چشم‌نواز و پشتیبانی نامحدود.
           </p>
           <div class="hero__actions" id="heroActions">
             <a href="#portfolio" class="btn btn--primary">
-              <span>مشاهده نمونه کارها</span>
+              <span data-i18n="hero.cta1">مشاهده نمونه کارها</span>
               <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M10 2L4 8l6 6"/>
               </svg>
             </a>
             <a href="#contact" class="btn btn--outline">
-              <span>درخواست مشاوره رایگان</span>
+              <span data-i18n="hero.cta2">درخواست مشاوره جهت همکاری</span>
             </a>
           </div>
         </div>
@@ -159,7 +374,7 @@
         <div class="hero__canvas-spacer" aria-hidden="true"></div>
       </div>
       <div class="hero__scroll-indicator" aria-hidden="true">
-        <span>اسکرول</span>
+        <span data-i18n="hero.scroll">اسکرول</span>
         <div class="hero__scroll-line"></div>
       </div>
     </section>
@@ -169,41 +384,48 @@
       <div class="container">
         <div class="about__inner">
           <div class="about__text" data-gsap="fade-up">
-            <span class="section__label">درباره من</span>
+            <span class="section__label" data-i18n="about.label">درباره من</span>
             <h2 class="section__heading">
-              طراحی و توسعه <span class="text-accent">وب حرفه‌ای</span>
+              <span data-i18n="about.heading">طراحی و توسعه</span> <span class="text-accent" data-i18n="about.headingAccent">وب حرفه‌ای</span>
             </h2>
-            <p class="about__desc">
+            <p class="about__desc" data-i18n="about.desc1">
               من mamad_dev هستم — یک طراح و توسعه‌دهنده با اشتیاق به ساختن تجربه‌های زیبا و کاربردی. باور دارم که هر پروژه یک داستان منحصربه‌فرد دارد و اینجا هستم تا آن را به بهترین شکل ممکن روایت کنم. تعهد من به کیفیت و پشتیبانی نامحدود همان چیزی است که مرا متمایز می‌کند.
             </p>
-            <p class="about__desc">
+            <p class="about__desc" data-i18n="about.desc2">
               از وب‌سایت‌های واکنش‌گرا تا اپلیکیشن‌های فول‌استک، راه‌حل‌هایی ارائه می‌دهم که زیبایی‌شناسی چشم‌نواز را با کد تمیز و قابل نگهداری ترکیب می‌کنند. هر پروژه توجه کامل و تعهد من به تعالی را دریافت می‌کند.
             </p>
             <div class="about__stats">
               <div class="stat" data-gsap="fade-up">
-                <span class="stat__number">۴+</span>
-                <span class="stat__label">سال تجربه برنامه‌نویسی</span>
+                <span class="stat__number" data-i18n="about.stat1Number">۴+</span>
+                <span class="stat__label" data-i18n="about.stat1Label">سال تجربه برنامه‌نویسی</span>
               </div>
               <div class="stat" data-gsap="fade-up">
-                <span class="stat__number">۸</span>
-                <span class="stat__label">پروژه موفق</span>
+                <span class="stat__number" data-i18n="about.stat2Number">۸</span>
+                <span class="stat__label" data-i18n="about.stat2Label">پروژه موفق</span>
               </div>
               <div class="stat" data-gsap="fade-up">
-                <span class="stat__number">۱۰۰٪</span>
-                <span class="stat__label">رضایت مشتری</span>
+                <span class="stat__number" data-i18n="about.stat3Number">۱۰۰٪</span>
+                <span class="stat__label" data-i18n="about.stat3Label">رضایت مشتری</span>
               </div>
             </div>
-            <!-- TODO: add real resume file -->
-            <a href="/assets/mamad_dev-resume.pdf" download class="btn btn--primary btn-resume">
+            <!-- Resume Download Button -->
+            <a
+              href="/assets/mamad_dev-resume.pdf"
+              download="mamad_dev_resume.pdf"
+              class="btn btn--primary btn-resume"
+              id="resumeDownload"
+              data-i18n="about.resume"
+              data-i18n-attr="aria-label"
+              aria-label="دانلود رزومه Mamad Dev">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M8 2v8M4 7l4 4 4-4M2 13h12"/>
               </svg>
-              دانلود رزومه (PDF)
+              <span data-i18n="about.resume">دانلود رزومه (PDF)</span>
             </a>
           </div>
           <div class="about__visual" data-gsap="fade-left">
             <!-- TODO: replace with actual logo/avatar and convert to WebP with Squoosh -->
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="mamad_dev - طراح و توسعه‌دهنده وب" class="about__avatar" loading="lazy">
+           
             <div class="about__code-card">
               <div class="about__code-header">
                 <span class="about__code-dot" style="--c:#ff5f57"></span>
@@ -228,36 +450,36 @@
     <section id="process" class="process section">
       <div class="container">
         <div class="process__header" data-gsap="fade-up">
-          <span class="section__label">روش کار من</span>
-          <h2 class="section__heading">فرآیند <span class="text-accent">کاری</span></h2>
+          <span class="section__label" data-i18n="process.label">روش کار من</span>
+          <h2 class="section__heading"><span data-i18n="process.heading">فرآیند</span> <span class="text-accent" data-i18n="process.headingAccent">کاری</span></h2>
         </div>
         <div class="process__steps">
           <div class="process__step" data-gsap="fade-up">
             <div class="process__step-number">۰۱</div>
             <div class="process__step-content">
-              <h3 class="process__step-title">جلسه کشف پروژه</h3>
-              <p class="process__step-desc">اهداف، نیازمندی‌ها و دیدگاه پروژه شما را بررسی می‌کنیم تا از همان ابتدا همسو باشیم.</p>
+              <h3 class="process__step-title" data-i18n="process.step1Title">جلسه کشف پروژه</h3>
+              <p class="process__step-desc" data-i18n="process.step1Desc">اهداف، نیازمندی‌ها و دیدگاه پروژه شما را بررسی می‌کنیم تا از همان ابتدا همسو باشیم.</p>
             </div>
           </div>
           <div class="process__step" data-gsap="fade-up">
             <div class="process__step-number">۰۲</div>
             <div class="process__step-content">
-              <h3 class="process__step-title">پیشنهاد و برآورد</h3>
-              <p class="process__step-desc">پیشنهادی جامع با زمان‌بندی، تحویل‌دهی و قیمت‌گذاری شفاف ارائه می‌دهم.</p>
+              <h3 class="process__step-title" data-i18n="process.step2Title">پیشنهاد و برآورد</h3>
+              <p class="process__step-desc" data-i18n="process.step2Desc">پیشنهادی جامع با زمان‌بندی، تحویل‌دهی و قیمت‌گذاری شفاف ارائه می‌دهم.</p>
             </div>
           </div>
           <div class="process__step" data-gsap="fade-up">
             <div class="process__step-number">۰۳</div>
             <div class="process__step-content">
-              <h3 class="process__step-title">توسعه با بازخورد هفتگی</h3>
-              <p class="process__step-desc">پروژه شما را با به‌روزرسانی‌های منظم می‌سازم و بازخوردهایتان را در طول فرآیند اعمال می‌کنم.</p>
+              <h3 class="process__step-title" data-i18n="process.step3Title">توسعه با بازخورد هفتگی</h3>
+              <p class="process__step-desc" data-i18n="process.step3Desc">پروژه شما را با به‌روزرسانی‌های منظم می‌سازم و بازخوردهایتان را در طول فرآیند اعمال می‌کنم.</p>
             </div>
           </div>
           <div class="process__step" data-gsap="fade-up">
             <div class="process__step-number">۰۴</div>
             <div class="process__step-content">
-              <h3 class="process__step-title">تحویل نهایی + ۳ ماه پشتیبانی رایگان</h3>
-              <p class="process__step-desc">پروژه شما با مستندات کامل و پشتیبانی مداوم رایگان راه‌اندازی می‌شود.</p>
+              <h3 class="process__step-title" data-i18n="process.step4Title">تحویل نهایی + ۳ ماه پشتیبانی رایگان</h3>
+              <p class="process__step-desc" data-i18n="process.step4Desc">پروژه شما با مستندات کامل و پشتیبانی مداوم رایگان راه‌اندازی می‌شود.</p>
             </div>
           </div>
         </div>
@@ -268,46 +490,151 @@
     <section id="testimonials" class="testimonials section">
       <div class="container">
         <div class="testimonials__header" data-gsap="fade-up">
-          <span class="section__label">نظرات مشتریان</span>
-          <h2 class="section__heading">مشتریان <span class="text-accent">چه می‌گویند</span></h2>
+          <span class="section__label" data-i18n="testimonials.label">نظرات مشتریان</span>
+          <h2 class="section__heading"><span data-i18n="testimonials.heading">مشتریان</span> <span class="text-accent" data-i18n="testimonials.headingAccent">چه می‌گویند</span></h2>
         </div>
-        <div class="testimonials__grid">
-          <div class="testimonial-card" data-gsap="fade-up">
-            <div class="testimonial-card__quote">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+        <!-- Testimonials Grid -->
+        <div class="testimonials__grid" role="list" data-i18n="testimonials.queryLabel" data-i18n-attr="aria-label" aria-label="نظرات مشتریان">
+
+          <!-- Testimonial Card 1 -->
+          <article class="testimonial-card" data-gsap="fade-up" role="listitem">
+            <div class="testimonial-card__verified" data-i18n="testimonials.ariaVerified" data-i18n-attr="aria-label" aria-label="مشتری تأیید شده">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
+              <span data-i18n="testimonials.verified">تأیید شده</span>
             </div>
-            <p class="testimonial-card__text">"تحویل و کیفیت کار mamad_dev فراتر از انتظارات ما بود. وب‌سایت به موقع تحویل داده شد و فوق‌العاده زیبا بود."</p>
+
+            <div class="testimonial-card__rating" data-i18n="testimonials.ariaRating" data-i18n-attr="aria-label" aria-label="امتیاز ۵ از ۵">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+
+            <blockquote class="testimonial-card__quote">
+              <p data-i18n="testimonials.card1Quote">"تحویل و کیفیت کار mamad_dev فراتر از انتظارات ما بود. وب‌سایت به موقع تحویل داده شد و فوق‌العاده زیبا بود. پشتیبانی پس از تحویل هم بسیار عالی بود."</p>
+            </blockquote>
+
             <div class="testimonial-card__author">
-              <strong>علی</strong>
-              <span>مدیر برند</span>
+              <div class="testimonial-card__avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                  data-i18n="testimonials.card1Alt"
+                  data-i18n-attr="alt"
+                  alt="علی احمدی - مدیر برند دیجیکالا"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <div class="testimonial-card__info">
+                <cite class="testimonial-card__name" data-i18n="testimonials.card1Name">علی احمدی</cite>
+                <span class="testimonial-card__role" data-i18n="testimonials.card1Role">مدیر برند</span>
+                <span class="testimonial-card__company" data-i18n="testimonials.card1Company">دیجیکالا</span>
+              </div>
             </div>
-          </div>
-          <div class="testimonial-card" data-gsap="fade-up">
-            <div class="testimonial-card__quote">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+
+            <div class="testimonial-card__meta">
+              <time datetime="2025-12-15" class="testimonial-card__date" data-i18n="testimonials.card1Date">۲۴ آذر ۱۴۰۴</time>
+              <span class="testimonial-card__project" data-i18n="testimonials.card1Project">پروژه: لندینگ پیج</span>
+            </div>
+          </article>
+          <article class="testimonial-card" data-gsap="fade-up" role="listitem">
+            <div class="testimonial-card__verified" data-i18n="testimonials.ariaVerified" data-i18n-attr="aria-label" aria-label="مشتری تأیید شده">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
+              <span data-i18n="testimonials.verified">تأیید شده</span>
             </div>
-            <p class="testimonial-card__text">"حرفه‌ای، پاسخگو و فوق‌العاده بااستعداد. فروشگاه آنلاینی که ساختند فروش مالاین ما را به طور چشمگیری افزایش داد."</p>
+
+            <div class="testimonial-card__rating" data-i18n="testimonials.ariaRating" data-i18n-attr="aria-label" aria-label="امتیاز ۵ از ۵">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+
+            <blockquote class="testimonial-card__quote">
+              <p data-i18n="testimonials.card2Quote">"حرفه‌ای، پاسخگو و فوق‌العاده بااستعداد. فروشگاه آنلاینی که ساختند فروش ما را به طور چشمگیری افزایش داد."</p>
+            </blockquote>
+
             <div class="testimonial-card__author">
-              <strong>سارا</strong>
-              <span>صاحب فروشگاه آنلاین</span>
+              <div class="testimonial-card__avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&h=80&fit=crop&crop=face"
+                  data-i18n="testimonials.card2Alt"
+                  data-i18n-attr="alt"
+                  alt="سارا محمدی - صاحب فروشگاه آنلاین"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <div class="testimonial-card__info">
+                <cite class="testimonial-card__name" data-i18n="testimonials.card2Name">سارا محمدی</cite>
+                <span class="testimonial-card__role" data-i18n="testimonials.card2Role">صاحب فروشگاه آنلاین</span>
+                <span class="testimonial-card__company" data-i18n="testimonials.card2Company">فروشگاه آنلاین</span>
+              </div>
             </div>
-          </div>
-          <div class="testimonial-card" data-gsap="fade-up">
-            <div class="testimonial-card__quote">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+
+            <div class="testimonial-card__meta">
+              <time datetime="2025-01-05" class="testimonial-card__date" data-i18n="testimonials.card2Date">۱۵ دی ۱۴۰۴</time>
+              <span class="testimonial-card__project" data-i18n="testimonials.card2Project">پروژه: فروشگاه اینترنتی</span>
+            </div>
+          </article>
+          <article class="testimonial-card" data-gsap="fade-up" role="listitem">
+            <div class="testimonial-card__verified" data-i18n="testimonials.ariaVerified" data-i18n-attr="aria-label" aria-label="مشتری تأیید شده">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
+              <span data-i18n="testimonials.verified">تأیید شده</span>
             </div>
-            <p class="testimonial-card__text">"کار فوق‌العاده! توجه به جزئیات و تعهد به کیفیت قابل تحسین است. برای هر پروژه وبی强烈توصیه می‌کنم."</p>
+
+            <div class="testimonial-card__rating" data-i18n="testimonials.ariaRating" data-i18n-attr="aria-label" aria-label="امتیاز ۵ از ۵">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+
+            <blockquote class="testimonial-card__quote">
+              <p data-i18n="testimonials.card3Quote">"کار فوق‌العاده! توجه به جزئیات و تعهد به کیفیت قابل تحسین است. برای هر پروژه وبی به شدت توصیه می‌کنم."</p>
+            </blockquote>
+
             <div class="testimonial-card__author">
-              <strong>رضا</strong>
-              <span>بنیان‌گذار استارتاپ</span>
+              <div class="testimonial-card__avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face"
+                  data-i18n="testimonials.card3Alt"
+                  data-i18n-attr="alt"
+                  alt="رضا کریمی - بنیان‌گذار استارتاپ"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+              <div class="testimonial-card__info">
+                <cite class="testimonial-card__name" data-i18n="testimonials.card3Name">رضا کریمی</cite>
+                <span class="testimonial-card__role" data-i18n="testimonials.card3Role">بنیان‌گذار استارتاپ</span>
+                <span class="testimonial-card__company" data-i18n="testimonials.card3Company">استارتاپ فناوری</span>
+              </div>
             </div>
-          </div>
+
+            <div class="testimonial-card__meta">
+              <time datetime="2025-02-28" class="testimonial-card__date" data-i18n="testimonials.card3Date">۱۰ اسفند ۱۴۰۴</time>
+              <span class="testimonial-card__project" data-i18n="testimonials.card3Project">پروژه: وب‌سایت استارتاپ</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -316,31 +643,31 @@
     <section id="faq" class="faq section">
       <div class="container">
         <div class="faq__header" data-gsap="fade-up">
-          <span class="section__label">سوالات متداول</span>
-          <h2 class="section__heading">پاسخ به <span class="text-accent">سوالات شما</span></h2>
+          <span class="section__label" data-i18n="faq.label">سوالات متداول</span>
+          <h2 class="section__heading"><span data-i18n="faq.heading">پاسخ به</span> <span class="text-accent" data-i18n="faq.headingAccent">سوالات شما</span></h2>
         </div>
         <div class="faq__list" data-gsap="fade-up">
           <details class="faq__item">
-            <summary class="faq__question">هزینه طراحی چقدر است؟</summary>
-            <div class="faq__answer">
+            <summary class="faq__question" data-i18n="faq.q1">هزینه طراحی چقدر است؟</summary>
+            <div class="faq__answer" data-i18n="faq.a1">
               هزینه پروژه به پیچیدگی آن بستگی دارد. پس از جلسه کشف پروژه، برآوردی دقیق و شفاف ارائه می‌دهم. به عنوان پیشنهاد ویژه، ۲۰٪ تخفیف برای اولین پروژه‌تان دریافت کنید.
             </div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">چقدر طول می‌کشد تا پروژه تحویل داده شود؟</summary>
-            <div class="faq__answer">
+            <summary class="faq__question" data-i18n="faq.q2">چقدر طول می‌کشد تا پروژه تحویل داده شود؟</summary>
+            <div class="faq__answer" data-i18n="faq.a2">
               پروژه‌های معمول بسته به دامنه و پیچیدگی، ۲ تا ۶ هفته زمان می‌برند. در پیشنهاد، زمان‌بندی دقیقی ارائه می‌دهم تا دقیقاً بدانید چه انتظاری داشته باشید.
             </div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">چرا باید به mamad_dev اعتماد کنم؟</summary>
-            <div class="faq__answer">
+            <summary class="faq__question" data-i18n="faq.q3">چرا باید به mamad_dev اعتماد کنم؟</summary>
+            <div class="faq__answer" data-i18n="faq.a3">
               من بیش از ۴ سال تجربه برنامه‌نویسی، ۸ پروژه موفق و نرخ رضایت ۱۰۰٪ مشتریان دارم. علاوه بر این، ضمانت بازگشت وجه ارائه می‌دهم — اگر از کارم راضی نباشید، ۱۰۰٪ مبلغ پرداختی‌تان را برمی‌گردانم.
             </div>
           </details>
           <details class="faq__item">
-            <summary class="faq__question">آیا کد تمیز و سئو-محور است؟</summary>
-            <div class="faq__answer">
+            <summary class="faq__question" data-i18n="faq.q4">آیا کد تمیز و سئو-محور است؟</summary>
+            <div class="faq__answer" data-i18n="faq.a4">
               قطعاً! کدی تمیز، معنایی و مستندسازی‌شده می‌نویسم. تمام وب‌سایت‌ها برای موتورهای جستجو با تگ‌های متا مناسب، HTML معنایی و زمان بارگذاری سریع بهینه شده‌اند.
             </div>
           </details>
@@ -352,36 +679,36 @@
     <section id="timeline" class="timeline section">
       <div class="container">
         <div class="timeline__header" data-gsap="fade-up">
-          <span class="section__label">مسیر یادگیری من</span>
-          <h2 class="section__heading">پیشرفت <span class="text-accent">تکنولوژی</span></h2>
+          <span class="section__label" data-i18n="timeline.label">مسیر یادگیری من</span>
+          <h2 class="section__heading"><span data-i18n="timeline.heading">پیشرفت</span> <span class="text-accent" data-i18n="timeline.headingAccent">تکنولوژی</span></h2>
         </div>
         <div class="timeline__list" data-gsap="fade-up">
           <div class="timeline__item">
-            <div class="timeline__year">پایه</div>
+            <div class="timeline__year" data-i18n="timeline.item1Year">پایه</div>
             <div class="timeline__content">
-              <h3>HTML و CSS</h3>
-              <p>با HTML معنایی و چیدمان‌های CSS واکنش‌گرا شروع کردم.</p>
+              <h3 data-i18n="timeline.item1Title">HTML و CSS</h3>
+              <p data-i18n="timeline.item1Desc">با HTML معنایی و چیدمان‌های CSS واکنش‌گرا شروع کردم.</p>
             </div>
           </div>
           <div class="timeline__item">
-            <div class="timeline__year">فرانت‌اند</div>
+            <div class="timeline__year" data-i18n="timeline.item2Year">فرانت‌اند</div>
             <div class="timeline__content">
-              <h3>JavaScript</h3>
-              <p>JavaScript خالص، دستکاری DOM و ویژگی‌های ES6+ را یاد گرفتم.</p>
+              <h3 data-i18n="timeline.item2Title">JavaScript</h3>
+              <p data-i18n="timeline.item2Desc">JavaScript خالص، دستکاری DOM و ویژگی‌های ES6+ را یاد گرفتم.</p>
             </div>
           </div>
           <div class="timeline__item">
-            <div class="timeline__year">فریم‌ورک</div>
+            <div class="timeline__year" data-i18n="timeline.item3Year">فریم‌ورک</div>
             <div class="timeline__content">
-              <h3>React و Next.js</h3>
-              <p>اپلیکیشن‌های مدرن SPA و SSR را با اکوسیستم React ساختم.</p>
+              <h3 data-i18n="timeline.item3Title">React و Next.js</h3>
+              <p data-i18n="timeline.item3Desc">اپلیکیشن‌های مدرن SPA و SSR را با اکوسیستم React ساختم.</p>
             </div>
           </div>
           <div class="timeline__item">
-            <div class="timeline__year">بک‌اند</div>
+            <div class="timeline__year" data-i18n="timeline.item4Year">بک‌اند</div>
             <div class="timeline__content">
-              <h3>Node.js و پایگاه داده</h3>
-              <p>توسعه فول‌استک با API، پایگاه داده و منطق سمت سرور.</p>
+              <h3 data-i18n="timeline.item4Title">Node.js و پایگاه داده</h3>
+              <p data-i18n="timeline.item4Desc">توسعه فول‌استک با API، پایگاه داده و منطق سمت سرور.</p>
             </div>
           </div>
         </div>
@@ -392,44 +719,120 @@
     <section id="blog" class="blog section">
       <div class="container">
         <div class="blog__header" data-gsap="fade-up">
-          <span class="section__label">آخرین مقالات</span>
-          <h2 class="section__heading">از <span class="text-accent">وبلاگ</span></h2>
+          <span class="section__label" data-i18n="blog.label">آخرین مقالات</span>
+          <h2 class="section__heading"><span data-i18n="blog.heading">از</span> <span class="text-accent" data-i18n="blog.headingAccent">وبلاگ</span></h2>
         </div>
         <div class="blog__grid">
           <!-- TODO: Connect to CMS (Sanity/Contentful) -->
           <div class="blog-card" data-gsap="fade-up">
             <div class="blog-card__img">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop" alt="روندهای طراحی وب" loading="lazy">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop&fm=avif 400w,
+                          https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&fm=avif 800w"
+                  sizes="(max-width: 480px) 400px, (max-width: 768px) 400px, 400px"
+                >
+                <source
+                  type="image/webp"
+                  srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop&fm=webp 400w,
+                          https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&fm=webp 800w"
+                  sizes="(max-width: 480px) 400px, (max-width: 768px) 400px, 400px"
+                >
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop"
+                  data-i18n="blog.card1Alt"
+                  data-i18n-attr="alt"
+                  alt="روندهای طراحی وب"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="250"
+                  class="blog-card__image"
+                  onerror="this.parentElement.classList.add('img-error'); this.srcset=''; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 fill=%22%23e7e5e4%22%3E%3Crect width=%22400%22 height=%22250%22/%3E%3Ctext x=%22200%22 y=%22135%22 text-anchor=%22middle%22 fill=%22%2378716c%22 font-family=%22system-ui%22 font-size=%2214%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D8%A8%D8%A7%D8%B1%DA%AF%D8%B0%D8%A7%D8%B1%DB%8C%20%D9%86%D8%B4%D8%AF%3C/text%3E%3C/svg%3E'"
+                >
+              </picture>
+              <div class="blog-card__img-skeleton" aria-hidden="true"></div>
             </div>
             <div class="blog-card__body">
-              <span class="blog-card__date">بهمن ۱۴۰۳</span>
-              <h3 class="blog-card__title">روندهای طراحی وب در سال ۲۰۲۵</h3>
-              <p class="blog-card__excerpt">آخرین روندهایی که طراحی وب مدرن را شکل می‌دهند را کشف کنید...</p>
-              <a href="#" class="blog-card__link">ادامه مطلب</a>
+              <span class="blog-card__date" data-i18n="blog.card1Date">بهمن ۱۴۰۳</span>
+              <h3 class="blog-card__title" data-i18n="blog.card1Title">روندهای طراحی وب در سال ۲۰۲۵</h3>
+              <p class="blog-card__excerpt" data-i18n="blog.card1Excerpt">آخرین روندهایی که طراحی وب مدرن را شکل می‌دهند را کشف کنید...</p>
+              <a href="#" class="blog-card__link" data-i18n="blog.readMore">ادامه مطلب</a>
             </div>
           </div>
           <div class="blog-card" data-gsap="fade-up">
             <div class="blog-card__img">
-              <!-- TODO: convert to WebP with Squoosh for 70% size reduction -->
-              <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop" alt="بهینه‌سازی سئو" loading="lazy">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop&fm=avif 400w,
+                          https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=500&fit=crop&fm=avif 800w"
+                  sizes="(max-width: 480px) 400px, (max-width: 768px) 400px, 400px"
+                >
+                <source
+                  type="image/webp"
+                  srcset="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop&fm=webp 400w,
+                          https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=500&fit=crop&fm=webp 800w"
+                  sizes="(max-width: 480px) 400px, (max-width: 768px) 400px, 400px"
+                >
+                <img
+                  src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=250&fit=crop"
+                  data-i18n="blog.card2Alt"
+                  data-i18n-attr="alt"
+                  alt="بهینه‌سازی سئو"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="250"
+                  class="blog-card__image"
+                  onerror="this.parentElement.classList.add('img-error'); this.srcset=''; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 fill=%22%23e7e5e4%22%3E%3Crect width=%22400%22 height=%22250%22/%3E%3Ctext x=%22200%22 y=%22135%22 text-anchor=%22middle%22 fill=%22%2378716c%22 font-family=%22system-ui%22 font-size=%2214%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D8%A8%D8%A7%D8%B1%DA%AF%D8%B0%D8%A7%D8%B1%DB%8C%20%D9%86%D8%B4%D8%AF%3C/text%3E%3C/svg%3E'"
+                >
+              </picture>
+              <div class="blog-card__img-skeleton" aria-hidden="true"></div>
             </div>
             <div class="blog-card__body">
-              <span class="blog-card__date">اسفند ۱۴۰۳</span>
-              <h3 class="blog-card__title">بهترین روش‌های سئو در سال ۲۰۲۵</h3>
-              <p class="blog-card__excerpt">یاد بگیرید چگونه وب‌سایت خود را برای موتورهای جستجو بهینه کنید...</p>
-              <a href="#" class="blog-card__link">ادامه مطلب</a>
+              <span class="blog-card__date" data-i18n="blog.card2Date">اسفند ۱۴۰۳</span>
+              <h3 class="blog-card__title" data-i18n="blog.card2Title">بهترین روش‌های سئو در سال ۲۰۲۵</h3>
+              <p class="blog-card__excerpt" data-i18n="blog.card2Excerpt">یاد بگیرید چگونه وب‌سایت خود را برای موتورهای جستجو بهینه کنید...</p>
+              <a href="#" class="blog-card__link" data-i18n="blog.readMore">ادامه مطلب</a>
             </div>
           </div>
           <div class="blog-card" data-gsap="fade-up">
             <div class="blog-card__img">
-              <!-- TODO: convert to WebP with Squoosh for 70% size reduction -->
-              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" alt="طراحی واکنش‌گرا" loading="lazy">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop&fm=avif 400w,
+                          https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&fm=avif 800w"
+                  sizes="(max-width: 480px) 400px, (max-width: 768px) 400px, 400px"
+                >
+                <source
+                  type="image/webp"
+                  srcset="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop&fm=webp 400w,
+                          https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&fm=webp 800w"
+                  sizes="(max-width: 480px) 400px, (max-width: 768px) 400px, 400px"
+                >
+                <img
+                  src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop"
+                  data-i18n="blog.card3Alt"
+                  data-i18n-attr="alt"
+                  alt="طراحی واکنش‌گرا"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="250"
+                  class="blog-card__image"
+                  onerror="this.parentElement.classList.add('img-error'); this.srcset=''; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22 fill=%22%23e7e5e4%22%3E%3Crect width=%22400%22 height=%22250%22/%3E%3Ctext x=%22200%22 y=%22135%22 text-anchor=%22middle%22 fill=%22%2378716c%22 font-family=%22system-ui%22 font-size=%2214%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D8%A8%D8%A7%D8%B1%DA%AF%D8%B0%D8%A7%D8%B1%DB%8C%20%D9%86%D8%B4%D8%AF%3C/text%3E%3C/svg%3E'"
+                >
+              </picture>
+              <div class="blog-card__img-skeleton" aria-hidden="true"></div>
             </div>
             <div class="blog-card__body">
-              <span class="blog-card__date">فروردین ۱۴۰۴</span>
-              <h3 class="blog-card__title">هنر طراحی واکنش‌گرا</h3>
-              <p class="blog-card__excerpt">تکنیک‌های ایجاد وب‌سایت‌های موبایل‌فرست را بیاموزید...</p>
-              <a href="#" class="blog-card__link">ادامه مطلب</a>
+              <span class="blog-card__date" data-i18n="blog.card3Date">فروردین ۱۴۰۴</span>
+              <h3 class="blog-card__title" data-i18n="blog.card3Title">هنر طراحی واکنش‌گرا</h3>
+              <p class="blog-card__excerpt" data-i18n="blog.card3Excerpt">تکنیک‌های ایجاد وب‌سایت‌های موبایل‌فرست را بیاموزید...</p>
+              <a href="#" class="blog-card__link" data-i18n="blog.readMore">ادامه مطلب</a>
             </div>
           </div>
         </div>
@@ -441,8 +844,8 @@
       <div class="container">
         <div class="skills__inner">
           <div class="skills__header" data-gsap="fade-up">
-            <span class="section__label">مهارت‌ها</span>
-            <h2 class="section__heading">تخصص‌های <span class="text-accent">من</span></h2>
+            <span class="section__label" data-i18n="skills.label">مهارت‌ها</span>
+            <h2 class="section__heading"><span data-i18n="skills.heading">تخصص‌های</span> <span class="text-accent" data-i18n="skills.headingAccent">من</span></h2>
           </div>
 
           <!-- Skills grid — populated dynamically from localStorage -->
@@ -457,14 +860,14 @@
     <section id="portfolio" class="portfolio section">
       <div class="container">
         <div class="portfolio__header" data-gsap="fade-up">
-          <span class="section__label">نمونه کارها</span>
-          <h2 class="section__heading">پروژه‌های <span class="text-accent">برجسته</span></h2>
+          <span class="section__label" data-i18n="portfolio.label">نمونه کارها</span>
+          <h2 class="section__heading"><span data-i18n="portfolio.heading">پروژه‌های</span> <span class="text-accent" data-i18n="portfolio.headingAccent">برجسته</span></h2>
           <!-- Portfolio filter tabs -->
           <div class="portfolio__filters">
-            <button class="portfolio__filter active" data-filter="all">همه</button>
-            <button class="portfolio__filter" data-filter="E-commerce">فروشگاهی</button>
-            <button class="portfolio__filter" data-filter="Corporate">شرکتی</button>
-            <button class="portfolio__filter" data-filter="Landing Page">لندینگ پیج</button>
+            <button class="portfolio__filter active" data-filter="all" data-i18n="portfolio.filterAll">همه</button>
+            <button class="portfolio__filter" data-filter="E-commerce" data-i18n="portfolio.filterEcommerce">فروشگاهی</button>
+            <button class="portfolio__filter" data-filter="Corporate" data-i18n="portfolio.filterCorporate">شرکتی</button>
+            <button class="portfolio__filter" data-filter="Landing Page" data-i18n="portfolio.filterLanding">لندینگ پیج</button>
           </div>
         </div>
 
@@ -474,7 +877,7 @@
             <circle cx="12" cy="12" r="10"/>
             <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
           </svg>
-          <span>هزینه پروژه به پیچیدگی آن بستگی دارد. به عنوان پیشنهاد ویژه، <strong>۲۰٪ تخفیف</strong> برای اولین پروژه‌تان دریافت کنید.</span>
+          <span><span data-i18n="portfolio.discount">هزینه پروژه به پیچیدگی آن بستگی دارد. به عنوان پیشنهاد ویژه،</span> <strong data-i18n="portfolio.discountStrong">۲۰٪ تخفیف</strong> <span data-i18n="portfolio.discountEnd">برای اولین پروژه‌تان دریافت کنید.</span></span>
         </div>
 
         <!-- Portfolio grid — populated dynamically from localStorage -->
@@ -489,24 +892,24 @@
       <div class="container">
         <div class="contact__inner">
           <div class="contact__info" data-gsap="fade-up">
-            <span class="section__label">تماس</span>
-            <h2 class="section__heading"><span class="text-accent">تماس با من</span></h2>
+            <span class="section__label" data-i18n="contact.label">تماس</span>
+            <h2 class="section__heading"><span class="text-accent" data-i18n="contact.heading">تماس با من</span></h2>
             <p class="contact__desc">
-              آیا پروژه‌ای در ذهن دارید؟ بیایید درباره اینکه چگونه می‌توانم دیدگاه شما را به واقعیت تبدیل کنم صحبت کنیم.
-              <br>فرم زیر را پر کنید یا مستقیماً با من در ارتباط باشید.
+              <span data-i18n="contact.desc">آیا پروژه‌ای در ذهن دارید؟ بیایید درباره اینکه چگونه می‌توانم دیدگاه شما را به واقعیت تبدیل کنم صحبت کنیم.</span>
+              <br><span data-i18n="contact.desc2">فرم زیر را پر کنید یا مستقیماً با من در ارتباط باشید.</span>
             </p>
             <ul class="contact__details">
               <li>
-                <span class="contact__detail-label">ایمیل</span>
+                <span class="contact__detail-label" data-i18n="contact.emailLabel">ایمیل</span>
                 <a href="#" id="contact-email" class="contact__detail-value" dir="ltr"><!-- TODO: JS renders email --></a>
               </li>
               <li>
-                <span class="contact__detail-label">تلفن</span>
+                <span class="contact__detail-label" data-i18n="contact.phoneLabel">تلفن</span>
                 <a href="#" id="phone-el" class="contact__detail-value" dir="ltr"><!-- TODO: JS renders phone --></a>
               </li>
               <li>
-                <span class="contact__detail-label">موقعیت</span>
-                <span class="contact__detail-value">یزد، ایران</span>
+                <span class="contact__detail-label" data-i18n="contact.locationLabel">موقعیت</span>
+                <span class="contact__detail-value" data-i18n="contact.locationValue">یزد، ایران</span>
               </li>
             </ul>
             <!-- Money-back guarantee badge -->
@@ -516,33 +919,32 @@
                 <path d="M9 12l2 2 4-4"/>
               </svg>
               <div class="guarantee-badge__text">
-                <strong>ضمانت ۱۰۰٪ بازگشت وجه</strong>
-                <span>اگر از کارم راضی نباشید، ۱۰۰٪ مبلغ پرداختی‌تان را برمی‌گردانم.</span>
+                <strong data-i18n="contact.guaranteeTitle">ضمانت ۵۰٪ بازگشت وجه</strong>
+                <span data-i18n="contact.guaranteeText">اگر از کارم راضی نباشید، ۵۰٪ مبلغ پرداختی‌تان را برمی‌گردانم.</span>
               </div>
             </div>
           </div>
-          <!-- Netlify Forms integration -->
-          <form class="contact__form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="_honey" novalidate data-gsap="fade-left">
-            <input type="hidden" name="form-name" value="contact" />
-            <!-- Honeypot anti-spam -->
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Form status announcement for screen readers -->
+          <div id="formStatus" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+          <form class="contact__form" id="contactForm" data-gsap="fade-left">
             <div class="form__field">
-              <label for="contactName" class="form__label">نام کامل</label>
-              <input type="text" id="contactName" name="name" class="form__input" placeholder="نام کامل خود را وارد کنید" required autocomplete="name">
-              <span class="form__error" id="nameError"></span>
+              <label for="contactName" class="form__label" data-i18n="contact.form.nameLabel">نام کامل</label>
+              <input type="text" id="contactName" name="name" class="form__input" data-i18n-placeholder="contact.form.namePlaceholder" placeholder="نام کامل خود را وارد کنید" required autocomplete="name" aria-describedby="nameError" aria-required="true">
+              <span class="form__error" id="nameError" role="alert"></span>
             </div>
             <div class="form__field">
-              <label for="contactEmail" class="form__label">آدرس ایمیل</label>
-              <input type="email" id="contactEmail" name="email" class="form__input" placeholder="name@example.com" required autocomplete="email" dir="ltr">
-              <span class="form__error" id="emailError"></span>
+              <label for="contactEmail" class="form__label" data-i18n="contact.form.emailLabel">آدرس ایمیل</label>
+              <input type="email" id="contactEmail" name="email" class="form__input" data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="name@example.com" required autocomplete="email" dir="ltr" aria-describedby="emailError" aria-required="true">
+              <span class="form__error" id="emailError" role="alert"></span>
             </div>
             <div class="form__field">
-              <label for="contactMessage" class="form__label">پیام شما</label>
-              <textarea id="contactMessage" name="message" class="form__input form__textarea" placeholder="درباره پروژه‌تان بگویید..." rows="5" required></textarea>
-              <span class="form__error" id="messageError"></span>
+              <label for="contactMessage" class="form__label" data-i18n="contact.form.messageLabel">پیام شما</label>
+              <textarea id="contactMessage" name="message" class="form__input form__textarea" data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="درباره پروژه‌تان بگویید..." rows="5" required aria-describedby="messageError" aria-required="true"></textarea>
+              <span class="form__error" id="messageError" role="alert"></span>
             </div>
             <button type="submit" class="btn btn--primary btn--submit btn-cta" id="submitBtn">
-              <span class="btn__text">درخواست مشاوره رایگان</span>
+              <span class="btn__text" data-i18n="contact.form.submit">درخواست مشاوره رایگان</span>
               <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M14 2L7 9M14 2l-4 12-3-5-5-3 12-4z"/>
               </svg>
@@ -558,12 +960,12 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
-        <p class="footer__copy">© ۱۴۰۴ mamad_dev — تمام حقوق محفوظ است.</p>
+        <p class="footer__copy" data-i18n="footer.copyright">© ۱۴۰۴ mamad_dev — تمام حقوق محفوظ است.</p>
         <div class="footer__links">
-          <a href="https://github.com/mamad_dev" target="_blank" rel="noopener noreferrer" class="footer__link">گیت‌هاب</a>
-          <a href="#" class="footer__link">لینکدین</a>
-          <a href="#" class="footer__link">توییتر</a>
-          <a href="#" class="footer__link">اینستاگرام</a>
+          <a href="https://github.com/mamad_dev" target="_blank" rel="noopener noreferrer" data-i18n="footer.github" data-i18n-attr="aria-label" class="footer__link" aria-label="گیت‌هاب">گیت‌هاب</a>
+          <a href="#" data-i18n="footer.linkedin" data-i18n-attr="aria-label" class="footer__link" aria-label="لینکدین">لینکدین</a>
+          <a href="#" data-i18n="footer.twitter" data-i18n-attr="aria-label" class="footer__link" aria-label="توییتر">توییتر</a>
+          <a href="#" data-i18n="footer.instagram" data-i18n-attr="aria-label" class="footer__link" aria-label="اینستاگرام">اینستاگرام</a>
         </div>
       </div>
     </div>
@@ -575,6 +977,8 @@
     target="_blank"
     rel="noopener noreferrer"
     class="telegram-float"
+    data-i18n="telegram.aria"
+    data-i18n-attr="aria-label"
     aria-label="تماس از طریق تلگرام"
   >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white">
@@ -583,14 +987,14 @@
   </a>
 
   <!-- Back-to-top button -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top" hidden>
+  <button class="back-to-top" id="backToTop" data-i18n="backToTop.aria" data-i18n-attr="aria-label" aria-label="Back to top" hidden>
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M10 16V4M4 10l6-6 6 6"/>
     </svg>
   </button>
 
   <!-- Hidden H1 for SEO -->
-  <h1 class="sr-only">طراحی حرفه‌ای وب با mamad_dev</h1>
+  <h1 class="sr-only" data-i18n="seo.h1">طراحی حرفه‌ای وب با mamad_dev</h1>
 
   <!-- ============================================================
        SCRIPTS — GSAP + Three.js from CDN
@@ -602,6 +1006,8 @@
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <!-- Main application logic -->
+  <script src="js/i18n.js" defer></script>
+  <script src="js/resume-download.js" defer></script>
   <script src="main.js" defer></script>
 </body>
 </html>

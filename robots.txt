@@ -1,3 +1,152 @@
+# ============================================================
+# robots.txt — mamad_dev Portfolio
+# Comprehensive SEO Configuration
+# ============================================================
+
+# ============================================================
+# USER AGENTS
+# ============================================================
+
+# All crawlers
 User-agent: *
+
+# ============================================================
+# ALLOWED PATHS (Static SPA + Public API)
+# ============================================================
+
 Allow: /
+Allow: /#hero
+Allow: /#about
+Allow: /#skills
+Allow: /#portfolio
+Allow: /#contact
+Allow: /sitemap.xml
+
+# ============================================================
+# DISALLOWED PATHS (Security & Performance)
+# ============================================================
+
+# Admin & Backend
+Disallow: /admin/
+Disallow: /admin
+Disallow: /server/
+Disallow: /server
+
+# API Routes (if exposed)
+Disallow: /api/auth/
+Disallow: /api/admin/
+Disallow: /api/private/
+
+# Server Files
+Disallow: /server.js
+Disallow: /server/
+Disallow: /database.js
+
+# Development & Config Files
+Disallow: /.env
+Disallow: /.env.
+Disallow: /.git/
+Disallow: /.git
+Disallow: /.gitignore
+Disallow: /node_modules/
+Disallow: /node_modules
+Disallow: /package
+Disallow: /.cache/
+Disallow: /.vscode/
+Disallow: /.idea/
+
+# Sensitive Data
+Disallow: /*.log
+Disallow: /*.sql
+Disallow: /*.sqlite
+Disallow: /*.db
+
+# Templates & Partial Files
+Disallow: /*.hbs
+Disallow: /*.ejs
+Disallow: /*.twig
+Disallow: /*.blade.php
+
+# ============================================================
+# SPEED HINTS
+# ============================================================
+
+Crawl-delay: 1
+
+# ============================================================
+# SITEMAP LOCATION
+# ============================================================
+
 Sitemap: https://mamadweb.netlify.app/sitemap.xml
+Sitemap: https://mamadweb.netlify.app/sitemap-partial.xml
+
+# ============================================================
+# HOST
+# ============================================================
+
+Host: https://mamadweb.netlify.app
+
+# ============================================================
+# SPECIAL CRAWLER RULES
+# ============================================================
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+Crawl-delay: 1
+
+# Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /images/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Disallow: /api/
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# ============================================================
+# CORS/CRAWLER SPECIFIC
+# ============================================================
+
+# Pinterest (if you have rich pins)
+User-agent: PinterestCrawler
+Allow: /assets/
+Allow: /images/
+Disallow: /api/
+
+# Facebook
+User-agent: FacebookBot
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /
+
+# Slack
+User-agent: Slackbot
+Allow: /assets/
+Allow: /images/
